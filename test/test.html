@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<h3>test</h3>
+<input type="text" name="v1" id="v1">
+<input type="text" name="v2" id="v2">
+<input type="button" onclick="get_data()" value="点我">
+<script>
+    var v1 = $("#v1").val();
+    function get_data() {
+        $.ajax({
+                url: 'http://127.0.0.1:8000/test/',
+                type: 'put',
+                headers:{"v1":v1},
+                success: function (data, statusText, xmlHttpRequest) {
+                    alert(JSON.stringify(data));
+                    console.log(xmlHttpRequest.getAllResponseHeaders())
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+
+            }
+        )
+    }
+</script>
+</body>
+</html>
